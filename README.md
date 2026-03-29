@@ -45,6 +45,27 @@ npm run build
 npm run preview
 ```
 
+## Docker 실행
+
+```bash
+docker build -t calmaker .
+docker run --rm -p 8080:80 calmaker
+```
+
+브라우저에서 `http://localhost:8080`으로 접속하면 됩니다.
+
+## Dokploy 배포
+
+Dokploy에서 `Application`을 생성한 뒤 `Build Type`을 `Dockerfile`로 선택하면 됩니다.
+
+- Repository: `https://github.com/yldst-dev/CalMaker`
+- Branch: `main`
+- Dockerfile Path: `Dockerfile`
+- Docker Context Path: `.`
+- Port: `80`
+
+이 프로젝트는 멀티 스테이지 Dockerfile로 빌드되며, 최종 산출물 `dist`는 NGINX를 통해 정적 서빙됩니다. SPA 라우팅을 위해 `index.html` fallback도 포함되어 있습니다.
+
 ## 사용 방법
 
 1. 상단 네비게이션에서 연도와 월을 이동합니다.
